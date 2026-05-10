@@ -51,10 +51,7 @@ function openPdfPicker() {
         :key="page.pageNumber"
         class="pdf-page"
         :class="[page.accent, { active: page.pageNumber === activePageNumber }]"
-        role="button"
-        tabindex="0"
         @click="emit('select-page', page.pageNumber)"
-        @keydown.enter="emit('select-page', page.pageNumber)"
       >
         <div class="page-toolbar">
           <span>Page {{ page.pageNumber }}</span>

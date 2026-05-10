@@ -92,6 +92,10 @@ export async function saveStoredSession(session: StoredLearningSession) {
   );
 }
 
+export async function deleteStoredSession(id: string) {
+  await withStore<undefined>("readwrite", (store) => store.delete(id));
+}
+
 export async function getStoredSession(id: string) {
   return withStore<StoredLearningSession | undefined>("readonly", (store) =>
     store.get(id)

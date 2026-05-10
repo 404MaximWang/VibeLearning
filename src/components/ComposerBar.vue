@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Send } from "lucide-vue-next";
+import { Hand, Send } from "lucide-vue-next";
 
 defineProps<{
   modelValue: string;
@@ -10,6 +10,7 @@ defineProps<{
 
 defineEmits<{
   "update:modelValue": [value: string];
+  interrupt: [];
   send: [];
 }>();
 </script>
@@ -26,6 +27,16 @@ defineEmits<{
     />
 
     <div class="composer-actions">
+      <button
+        v-if="streamRunning"
+        type="button"
+        class="icon-button"
+        title="Interrupt"
+        @click="$emit('interrupt')"
+      >
+        <Hand :size="16" />
+        <span>Interrupt</span>
+      </button>
       <button type="button" class="send-button" :disabled="!canSend" @click="$emit('send')">
         <Send :size="17" />
         <span>{{ streamRunning ? "Send anyway" : "Send" }}</span>
